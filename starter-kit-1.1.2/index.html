@@ -3,19 +3,42 @@
 <head>
 <meta charset="utf-8">
 <title>Ember Starter Kit</title>
-  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/lib/normalize.css">
+  <link rel="stylesheet" href="css/lib/foundation.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <script type="text/x-handlebars">
-    <h1>{{#link-to 'index' }}Vorlesungsverzeichnis Muthesius{{/link-to}}</h1>
-    {{#link-to 'semesters'}}Alle semester{{/link-to}}
-    {{outlet}}
+    <div class="">
+      <nav class="top-bar">
+        <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+          <h1>{{#link-to 'index' }}Vorlesungsverzeichnis{{/link-to}}</h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      {{outlet}}
+    </div>
+
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">
-    start
+    <div class="row">
+      <ul class="block-grid four-up mobile-two-up">
+          <li><div class="panel radius">Freie Kunst</div></li>
+          <li><div class="panel radius">Interior</div></li>
+          <li><div class="panel radius">Industriedesign</div></li>
+          <li><div class="panel radius">KoDe</div></li>
+          <li><div class="panel radius">ZfM</div></li>
+          <li><div class="panel radius">IKDM</div></li>
+      </ul>
+    </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name="semesters">
@@ -56,6 +79,7 @@
   <script src="js/libs/handlebars-1.0.0.js"></script>
   <script src="js/libs/ember-1.1.2.js"></script>
   <script src="js/libs/ember-data.js"></script>
+  <script src="js/libs/foundation.min.js"></script>
 
   <script src="js/app.js"></script>
   <script src="data/fixtures.js"></script>

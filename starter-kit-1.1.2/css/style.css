@@ -1,8 +1,4 @@
-/* Put your CSS here */
-html, body {
-    margin: 20px;
-}
 
-.active {
-  color: red!important;
+header .block-grid .panel {
+  min-height: 100px;
 }
