@@ -1,4 +1,10 @@
 $(function(){
+  $('pre').each(function(){
+    $(this).html($(this).html().trim().replace(/^\s+|\s+$/g, ''));
+  });
+  $('code').each(function(){
+    $(this).text($(this).text().replace(/^\s+|\s+$/g, ''));
+  });
   Prism.highlightAll(false, function() {
     $('.fancy').each(function(){
       var block = $(this);

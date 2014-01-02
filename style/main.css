@@ -26,10 +26,44 @@
   margin-left: 5%;
   margin-top: 3%;
 }
+
+.slide.shout h2 {
+  line-height: 25%;
+  vertical-align: middle;
+  top: 42%;
+}
+
+.slide.shout h3 {
+  width: 100%;
+  line-height: 25%;
+  vertical-align: middle;
+  top: 42%;
+  position:absolute;
+  left:128px;
+  right:96px;
+  color:#FFF;
+  font-size:80px;
+  -webkit-transform:translateY(-50%);
+  -moz-transform:translateY(-50%);
+  -ms-transform:translateY(-50%);
+  -o-transform:translateY(-50%);
+  transform:translateY(-50%);
+}
+
+.slide h2 small {
+  color: silver;
+  font-size: 78%;
+}
+
+/** Code styles **/
 .slide pre {
   font-size: 85%;
   overflow: scroll;
   max-height: 350px;
+}
+
+.slide pre code {
+  line-height: 37px;
 }
 
 pre[class*="language-"] {
