@@ -1,11 +1,27 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-  // put your routes here
+  this.resource( 'todos', { path: '/' } );
 });
 
-App.IndexRoute = Ember.Route.extend({
+App.TodosRoute = Ember.Route.extend({
   model: function() {
-    return ['red', 'yellow', 'blue','orange','green'];
+    return TODOS;
   }
 });
+
+
+TODOS = [
+  {
+    title: "Seminar vorbereiten",
+    completed: true
+  },
+  {
+    title: "Seminar halten",
+    completed: true
+  },
+  {
+    title: "Projektpräsentation",
+    completed: false
+  }
+];

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<script type="text/x-handlebars" id="index">
+<script type="text/x-handlebars" id="todos">
 
   <div class="container">
     <div class="row">
@@ -17,14 +17,16 @@
         <h1>Todos für 2014</h1>
         <input type="text" class="form-control" placeholder="Was gibt's zu tun?" autofocus>
         <ul class="list-group">
-          <li class="list-group-item completed">Seminar vorbereiten<span class="glyphicon glyphicon-ok pull-right"></span></li>
-          <li class="list-group-item">Seminar halten</li>
-          <li class="list-group-item">Projektpräsentation</li>
 
-          {{#each color in model}}
-          <li class="list-group-item">{{color}}</li>
+          {{#each model}}
+          <li class="list-group-item">
+            <span {{bind-attr class="completed"}}>{{title}}</span>
+            {{#if completed}}
+            <span class="pull-right glyphicon glyphicon-ok"></span>
+            {{/if}}
+          </li>
           {{/each}}
-
+          
         </ul>
       </div>
     </div>
