@@ -6,7 +6,7 @@ App.Router.map(function() {
 
 App.TodosRoute = Ember.Route.extend({
   model: function() {
-    return TODOS;
+    return this.store.findAll('todo');
   }
 });
 
@@ -16,8 +16,11 @@ App.TodosController = Ember.ArrayController.extend({
       var newTodoTitle = this.get('newTitle').trim();
 
       if ( newTodoTitle.length > 0 ) {
-        var newTodo = { title: newTodoTitle, completed: false };
-        this.addObject(newTodo);
+        var newTodo = this.store.createRecord('todo');
+
+        newTodo.set('title', newTodoTitle );
+        newTodo.save();
+
         this.set('newTitle',"");
       }
     }
@@ -28,30 +31,26 @@ App.TodoController = Ember.ObjectController.extend({
   actions: {
     toggleCompleted: function() {
       // toggle the completed state:
-      // the ember way:
-      this.toggleProperty('completed');
       // the old way ...
       // if (this.get('completed') === true) {
       //   this.set('completed',false);
       // } else {
       //   this.set('completed',true);
       // }
+      
+      // the ember way:
+      var todo = this.get('model');
+      todo.toggleProperty('completed');
+      todo.save();
     }
   }
 });
 
 
-TODOS = [
-  {
-    title: "Seminar vorbereiten",
-    completed: true
-  },
-  {
-    title: "Seminar halten",
-    completed: true
-  },
-  {
-    title: "Projektpräsentation",
-    completed: false
-  }
-];
+
+
+
+
+
+
+
