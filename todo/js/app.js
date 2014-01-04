@@ -10,6 +10,16 @@ App.TodosRoute = Ember.Route.extend({
   }
 });
 
+App.TodosController = Ember.ArrayController.extend({
+  actions: {
+    newTodo: function() {
+      var newTodo = { title: this.get('newTitle'), completed: false };
+      this.addObject(newTodo);
+      this.set('newTitle',"");
+    }
+  }
+});
+
 
 TODOS = [
   {
