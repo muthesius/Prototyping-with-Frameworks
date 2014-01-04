@@ -35,6 +35,11 @@
     {{/each}}
   </ul>
 
+  {{#if numTodosDone }}
+    <span>{{ numTodosDone }} erledigte Todo(s) </span>
+    <button {{action 'deleteAllDone'}}>löschen</button>
+  {{/if}}
+
 </script>
 
 <!-- todo (einzahl!) template -->

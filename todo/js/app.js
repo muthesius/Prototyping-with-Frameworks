@@ -23,8 +23,25 @@ App.TodosController = Ember.ArrayController.extend({
 
         this.set('newTitle',"");
       }
+    },
+    deleteAllDone: function() {
+      var doneTodos = this.get('completedTodos');
+      doneTodos.forEach(function(todo){
+        // löscht das todo aus der liste UND dem localstorage
+        todo.destroyRecord(); 
+      });
     }
-  }
+  },
+
+  completedTodos: function() {
+    var todos = this.get('model');
+    return todos.filterBy('completed');
+  }.property('@each.completed'),
+
+  numTodosDone: function() {
+    return this.get('completedTodos.length');
+  }.property('completedTodos')
+
 });
 
 App.TodoController = Ember.ObjectController.extend({
@@ -37,7 +54,7 @@ App.TodoController = Ember.ObjectController.extend({
       // } else {
       //   this.set('completed',true);
       // }
-      
+
       // the ember way:
       var todo = this.get('model');
       todo.toggleProperty('completed');
