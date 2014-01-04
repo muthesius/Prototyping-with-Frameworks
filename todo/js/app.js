@@ -13,9 +13,13 @@ App.TodosRoute = Ember.Route.extend({
 App.TodosController = Ember.ArrayController.extend({
   actions: {
     newTodo: function() {
-      var newTodo = { title: this.get('newTitle'), completed: false };
-      this.addObject(newTodo);
-      this.set('newTitle',"");
+      var newTodoTitle = this.get('newTitle').trim();
+
+      if ( newTodoTitle.length > 0 ) {
+        var newTodo = { title: newTodoTitle, completed: false };
+        this.addObject(newTodo);
+        this.set('newTitle',"");
+      }
     }
   }
 });
