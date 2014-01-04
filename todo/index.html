@@ -9,30 +9,43 @@
 </head>
 <body>
 
-<script type="text/x-handlebars" id="todos">
-
+<!-- application template -->
+<script type="text/x-handlebars">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <h1>Todos für 2014</h1>
-        <input type="text" class="form-control" placeholder="Was gibt's zu tun?" autofocus>
-        <ul class="list-group">
 
-          {{#each model}}
-          <li class="list-group-item">
-            <span {{bind-attr class="completed"}}>{{title}}</span>
-            {{#if completed}}
-            <span class="pull-right glyphicon glyphicon-ok"></span>
-            {{/if}}
-          </li>
-          {{/each}}
-          
-        </ul>
+        {{ outlet }}
+
       </div>
     </div>
   </div>
+</script>
+
+<!-- todos template -->
+<script type="text/x-handlebars" id="todos">
+
+  <input type="text" class="form-control" placeholder="Was gibt's zu tun?" autofocus>
+  <ul class="list-group">
+    {{#each _todo in model}}
+      {{render todo _todo}}
+    {{/each}}
+  </ul>
 
 </script>
+
+<!-- todo (einzahl!) template -->
+<script type="text/x-handlebars" id="todo">
+  <li class="list-group-item">
+    <span {{bind-attr class="completed"}}>{{title}}</span>
+    {{#if completed}}
+    <span class="pull-right glyphicon glyphicon-ok"></span>
+    {{/if}}
+  </li>
+</script>
+
+
 
 <script src="js/libs/jquery-1.10.2.js"></script>
 <script src="js/libs/handlebars-1.1.2.js"></script>
