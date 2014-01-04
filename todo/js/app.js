@@ -10,6 +10,12 @@ App.TodosRoute = Ember.Route.extend({
   }
 });
 
+App.TodosView = Ember.View.extend({
+  didInsertElement: function() {
+    this.$('input:first').focus();
+  }
+});
+
 App.TodosController = Ember.ArrayController.extend({
   actions: {
     newTodo: function() {
