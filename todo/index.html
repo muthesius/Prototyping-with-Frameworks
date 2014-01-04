@@ -39,7 +39,7 @@
 
 <!-- todo (einzahl!) template -->
 <script type="text/x-handlebars" id="todo">
-  <li class="list-group-item">
+  <li class="list-group-item" {{action 'toggleCompleted'}} >
     <span {{bind-attr class="completed"}}>{{title}}</span>
     {{#if completed}}
     <span class="pull-right glyphicon glyphicon-ok"></span>

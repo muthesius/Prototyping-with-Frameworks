@@ -20,6 +20,22 @@ App.TodosController = Ember.ArrayController.extend({
   }
 });
 
+App.TodoController = Ember.ObjectController.extend({
+  actions: {
+    toggleCompleted: function() {
+      // toggle the completed state:
+      // the ember way:
+      this.toggleProperty('completed');
+      // the old way ...
+      // if (this.get('completed') === true) {
+      //   this.set('completed',false);
+      // } else {
+      //   this.set('completed',true);
+      // }
+    }
+  }
+});
+
 
 TODOS = [
   {
