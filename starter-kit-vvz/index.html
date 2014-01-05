@@ -42,10 +42,12 @@
 
 
   <script type="text/x-handlebars" id="lecturers">
-    <div class="col-md-3">
+    <div class="col-md-3 lecturer-list">
+
+      {{input type="search" valueBinding="searchName"}}
 
       <ul class="nav nav-pills nav-stacked course-list">
-      {{#each thisLecturer in model}}
+      {{#each thisLecturer in list}}
         {{#link-to 'lecturer' thisLecturer tagName="li"}}
           <a href="#">{{thisLecturer.name}}</a>
         {{/link-to}}

@@ -15,6 +15,20 @@ App.LecturersRoute = Ember.Route.extend({
   }
 });
 
+App.LecturersController = Ember.ArrayController.extend({
+  list: function() {
+    var regel = new RegExp( this.get('searchName'), 'i' );
+    var result = this.filter(function(lecturer){
+      if (lecturer.get('name')) {
+        return lecturer.get('name').match( regel );
+      } else {
+        return false;
+      }
+    });
+    return result;
+  }.property('searchName')
+});
+
 App.CoursesRoute = Ember.Route.extend({
   model: function() {
     return this.store.findAll('course');
