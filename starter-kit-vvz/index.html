@@ -55,7 +55,26 @@
 
   <script type="text/x-handlebars" id="course">
     <h1>{{ title }}</h1>
-    <p>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="pull-right">
+          <em>Ort:</em>
+        </div>
+        <div class="pull-right">
+          <em>Tag:</em>
+        </div>
+        <div class="pull-right">
+          <em>Zeit:</em>
+        </div>
+      </div>
+      <div class="col-md-5">
+         <div>{{ ort }}</div>
+         <div>{{ day }}</div>
+         <div>{{ time }}</div>
+      </div>
+    </div>
+
+    <p class="course-info">
       {{ info }}
     </p>
   </script>
