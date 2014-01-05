@@ -38,11 +38,9 @@
     <div class="col-md-3">
       <ul class="nav nav-pills nav-stacked course-list">
       {{#each thisCourse in model}}
-        <li>
-          {{#link-to 'course' thisCourse}}
-            {{thisCourse.title}}
-          {{/link-to}}
-        </li>
+        {{#link-to 'course' thisCourse tagName="li"}}
+          <a href="#">{{thisCourse.title}}</a>
+        {{/link-to}}
       {{/each}}
       </ul>
     </div>
@@ -55,6 +53,15 @@
 
   <script type="text/x-handlebars" id="course">
     <h1>{{ title }}</h1>
+
+    {{partial "course_meta"}}
+
+    <p class="course-info">
+      {{ info }}
+    </p>
+  </script>
+
+  <script type="text/x-handlebars" id="_course_meta">
     <div class="row">
       <div class="col-md-1">
         <div class="pull-right">
@@ -73,11 +80,8 @@
          <div>{{ time }}</div>
       </div>
     </div>
-
-    <p class="course-info">
-      {{ info }}
-    </p>
   </script>
+
 
   <script src="js/libs/jquery/jquery.min.js"></script>
   <script src="js/libs/bootstrap.min.js"></script>
