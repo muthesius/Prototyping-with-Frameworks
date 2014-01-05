@@ -1,5 +1,23 @@
 App = Ember.Application.create();
 
+App.initializer({
+  name: "session",
+  after: "store",
+  initialize: function(container,application) {
+    var store = container.lookup('store:main');
+    var session = store.findAll('session').get('firstObject');
+    if (!session) session = store.createRecord('session');
+    application.register('session:main', {create:function(){return session;}}, {singleton: true});
+    application.inject('controller', 'session', 'session:main');
+    application.inject('route', 'session', 'session:main');
+  }
+});
+
+App.Session = DS.Model.extend({
+  name: DS.attr('string',{defaultValue: "session"}),
+  todos: DS.hasMany()
+});
+
 App.Router.map(function() {
   this.resource( 'todos', { path: '/' } );
 });
@@ -25,6 +43,8 @@ App.TodosController = Ember.ArrayController.extend({
         var newTodo = this.store.createRecord('todo');
 
         newTodo.set('title', newTodoTitle );
+        this.session.get('todos').addObject(newTodo);
+        this.session.save();
         newTodo.save();
 
         this.set('newTitle',"");
