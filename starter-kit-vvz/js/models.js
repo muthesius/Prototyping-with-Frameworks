@@ -1,3 +1,5 @@
+App.ApplicationAdapter = DS.FixtureAdapter.extend({});
+
 var attr = DS.attr,
     belongsTo = DS.belongsTo,
     hasMany = DS.hasMany;
