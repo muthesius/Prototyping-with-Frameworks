@@ -2,26 +2,62 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Ember Starter Kit</title>
+<title>VVZ</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
 
-    {{outlet}}
+  <script type="text/x-handlebars">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <h2>
+          {{#link-to 'index'}}Vorlesungsverzeichnis{{/link-to}}
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          {{#link-to 'courses'}}Alle Veranstaltungen{{/link-to}}
+        </div>
+      </div>
+
+      <div class="row">
+        {{ outlet }}
+      </div>
+    </div>
   </script>
 
   <script type="text/x-handlebars" id="index">
-    <ul>
-    {{#each item in model}}
-      <li>
-        {{item.title}}
-      </li>
-    {{/each}}
-    </ul>
+    Willkommen im Vorlesungverzeichnis :)
+  </script>
+
+  <script type="text/x-handlebars" id="courses">
+    <div class="col-md-3">
+      <ul class="nav nav-pills nav-stacked course-list">
+      {{#each thisCourse in model}}
+        <li>
+          {{#link-to 'course' thisCourse}}
+            {{thisCourse.title}}
+          {{/link-to}}
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      {{ outlet }}
+    </div>
+
+  </script>
+
+  <script type="text/x-handlebars" id="course">
+    <h1>{{ title }}</h1>
+    <p>
+      {{ info }}
+    </p>
   </script>
 
   <script src="js/libs/jquery/jquery.min.js"></script>

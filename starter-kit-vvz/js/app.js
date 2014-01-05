@@ -1,10 +1,12 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-  // put your routes here
+  this.resource('courses', { path : 'courses' }, function() {
+    this.resource('course', { path : ':course_id' });
+  });
 });
 
-App.IndexRoute = Ember.Route.extend({
+App.CoursesRoute = Ember.Route.extend({
   model: function() {
     return this.store.findAll('course');
   }
