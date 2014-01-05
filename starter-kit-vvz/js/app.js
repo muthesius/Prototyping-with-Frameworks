@@ -4,6 +4,15 @@ App.Router.map(function() {
   this.resource('courses', { path : 'courses' }, function() {
     this.resource('course', { path : ':course_id' });
   });
+  this.resource('lecturers', { path : 'lecturers' }, function() {
+    this.resource('lecturer', { path : ':lecturer_id' });
+  });
+});
+
+App.LecturersRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.findAll('lecturer');
+  }
 });
 
 App.CoursesRoute = Ember.Route.extend({
@@ -52,8 +61,10 @@ App.CourseController = Ember.ObjectController.extend({
     
   lecturerCourses: function() {
     var related = this.get('lecturers.firstObject.courses');
-    related = related.rejectBy('id', this.get('id'));
-    return related;
+    if (related) {
+      related = related.rejectBy('id', this.get('id'));
+      return related;
+    }
   }.property('lecturers.firstObject')
 });
 

@@ -19,9 +19,15 @@
         </div>
       </div>
       <div class="row">
+
         <div class="col-md-2">
           {{#link-to 'courses'}}Alle Veranstaltungen{{/link-to}}
         </div>
+        
+        <div class="col-md-2">
+          {{#link-to 'lecturers'}}Lehrende{{/link-to}}
+        </div>
+
       </div>
 
       <div class="row">
@@ -33,6 +39,37 @@
   <script type="text/x-handlebars" id="index">
     Willkommen im Vorlesungverzeichnis :)
   </script>
+
+
+  <script type="text/x-handlebars" id="lecturers">
+    <div class="col-md-3">
+
+      <ul class="nav nav-pills nav-stacked course-list">
+      {{#each thisLecturer in model}}
+        {{#link-to 'lecturer' thisLecturer tagName="li"}}
+          <a href="#">{{thisLecturer.name}}</a>
+        {{/link-to}}
+      {{/each}}
+      </ul>
+
+    </div>
+
+    <div class="col-md-9">
+      {{ outlet }}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="lecturers/index">
+
+  </script>
+
+  <script type="text/x-handlebars" id="lecturer">
+    {{#each courses}}
+      {{render 'course' this}}
+    {{/each}}
+  </script>
+
+
 
   <script type="text/x-handlebars" id="courses">
     <div class="col-md-3">
@@ -82,17 +119,17 @@
 
   <script type="text/x-handlebars" id="_course_meta">
     <div class="row">
-      <div class="col-md-1">
-        <div class="pull-right">
+      <div class="col-md-2">
+        <div>
           <em>Ort:</em>
         </div>
-        <div class="pull-right">
+        <div>
           <em>Tag:</em>
         </div>
-        <div class="pull-right">
+        <div>
           <em>Zeit:</em>
         </div>
-        <div class="pull-right">
+        <div>
           <em>Lehrende(r):</em>
         </div>
       </div>
