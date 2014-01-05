@@ -55,7 +55,18 @@
 
   <script type="text/x-handlebars" id="courses/index">
 
-    Es gibt {{courses.length}} Veranstaltungen.
+    {{#each byDay }}
+      <h3 class="day">{{day}}</h3>
+      <ul>
+        {{#each courses}}
+        <li>
+          {{#link-to 'course' this}}
+            {{title}}
+          {{/link-to}}
+        </li>
+        {{/each}}
+      </ul>
+    {{/each}}
 
   </script>
 

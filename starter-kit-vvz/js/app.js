@@ -12,11 +12,35 @@ App.CoursesRoute = Ember.Route.extend({
   }
 });
 
+App.CoursesIndexView = Ember.View.extend({
+  didInsertElement: function() {
+    this.$('.day').click(function(){
+      $(this).next('ul').toggle();
+    });
+    this.$('ul').hide();
+  }
+});
+
 App.CoursesIndexController = Ember.ArrayController.extend({
   needs: [ 'courses' ],
   courses: function() {
     return this.get('controllers.courses.model');
-  }.property('controllers.courses.model')
+  }.property('controllers.courses.model'),
+
+  byDay: function() {
+    var courses = this.get('courses');
+    var days = courses.getEach('day').uniq().filterBy('');
+
+    var filterCourses = [];
+    days.forEach( function( currentDay ) {
+      filterCourses.addObject( {
+        day: currentDay,
+        courses: courses.filterBy('day',currentDay)
+      });
+    });
+
+    return filterCourses;
+  }.property('courses')
 });
 
 
@@ -28,6 +52,7 @@ App.CourseController = Ember.ObjectController.extend({
     
   lecturerCourses: function() {
     var related = this.get('lecturers.firstObject.courses');
+    related = related.rejectBy('id', this.get('id'));
     return related;
   }.property('lecturers.firstObject')
 });
